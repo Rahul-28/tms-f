@@ -24,8 +24,8 @@ describe('Train e2e test', () => {
     serviceStartDate: '2025-07-12',
     serviceEndDate: '2025-07-12',
     serviceType: 'DAILY',
-    departureTime: '2025-07-11T08:35:20.331Z',
-    arrivalTime: '2025-07-11T21:00:01.656Z',
+    departureTime: '2025-07-11T08:46:11.331Z',
+    arrivalTime: '2025-07-11T21:10:52.656Z',
     basicPrice: 11267.94,
     isActive: false,
   };
@@ -198,13 +198,13 @@ describe('Train e2e test', () => {
 
       cy.get(`[data-cy="serviceType"]`).select('WEEKLY');
 
-      cy.get(`[data-cy="departureTime"]`).type('2025-07-11T08:42');
+      cy.get(`[data-cy="departureTime"]`).type('2025-07-11T08:53');
       cy.get(`[data-cy="departureTime"]`).blur();
-      cy.get(`[data-cy="departureTime"]`).should('have.value', '2025-07-11T08:42');
+      cy.get(`[data-cy="departureTime"]`).should('have.value', '2025-07-11T08:53');
 
-      cy.get(`[data-cy="arrivalTime"]`).type('2025-07-11T21:49');
+      cy.get(`[data-cy="arrivalTime"]`).type('2025-07-11T22:00');
       cy.get(`[data-cy="arrivalTime"]`).blur();
-      cy.get(`[data-cy="arrivalTime"]`).should('have.value', '2025-07-11T21:49');
+      cy.get(`[data-cy="arrivalTime"]`).should('have.value', '2025-07-11T22:00');
 
       cy.get(`[data-cy="basicPrice"]`).type('24218.19');
       cy.get(`[data-cy="basicPrice"]`).should('have.value', '24218.19');

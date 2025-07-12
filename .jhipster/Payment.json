@@ -1,6 +1,6 @@
 {
   "annotations": {
-    "changelogDate": "20250712062202"
+    "changelogDate": "20250712063253"
   },
   "applications": ["jhipster"],
   "dto": "mapstruct",
@@ -69,7 +69,7 @@
     {
       "otherEntityName": "invoice",
       "otherEntityRelationshipName": "payment",
-      "relationshipName": "invoice",
+      "relationshipName": "invoices",
       "relationshipSide": "left",
       "relationshipType": "one-to-many"
     },

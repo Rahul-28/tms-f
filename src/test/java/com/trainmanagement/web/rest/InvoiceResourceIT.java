@@ -43,9 +43,6 @@ class InvoiceResourceIT {
     private static final String DEFAULT_INVOICE_NUMBER = "AAAAAAAAAA";
     private static final String UPDATED_INVOICE_NUMBER = "BBBBBBBBBB";
 
-    private static final String DEFAULT_PAYMENT_ID = "AAAAAAAAAA";
-    private static final String UPDATED_PAYMENT_ID = "BBBBBBBBBB";
-
     private static final String DEFAULT_TRANSACTION_ID = "AAAAAAAAAA";
     private static final String UPDATED_TRANSACTION_ID = "BBBBBBBBBB";
 
@@ -101,7 +98,6 @@ class InvoiceResourceIT {
     public static Invoice createEntity() {
         return new Invoice()
             .invoiceNumber(DEFAULT_INVOICE_NUMBER)
-            .paymentId(DEFAULT_PAYMENT_ID)
             .transactionId(DEFAULT_TRANSACTION_ID)
             .receiptNumber(DEFAULT_RECEIPT_NUMBER)
             .invoiceDate(DEFAULT_INVOICE_DATE)
@@ -120,7 +116,6 @@ class InvoiceResourceIT {
     public static Invoice createUpdatedEntity() {
         return new Invoice()
             .invoiceNumber(UPDATED_INVOICE_NUMBER)
-            .paymentId(UPDATED_PAYMENT_ID)
             .transactionId(UPDATED_TRANSACTION_ID)
             .receiptNumber(UPDATED_RECEIPT_NUMBER)
             .invoiceDate(UPDATED_INVOICE_DATE)
@@ -191,23 +186,6 @@ class InvoiceResourceIT {
         long databaseSizeBeforeTest = getRepositoryCount();
         // set the field null
         invoice.setInvoiceNumber(null);
-
-        // Create the Invoice, which fails.
-        InvoiceDTO invoiceDTO = invoiceMapper.toDto(invoice);
-
-        restInvoiceMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsBytes(invoiceDTO)))
-            .andExpect(status().isBadRequest());
-
-        assertSameRepositoryCount(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    void checkPaymentIdIsRequired() throws Exception {
-        long databaseSizeBeforeTest = getRepositoryCount();
-        // set the field null
-        invoice.setPaymentId(null);
 
         // Create the Invoice, which fails.
         InvoiceDTO invoiceDTO = invoiceMapper.toDto(invoice);
@@ -351,7 +329,6 @@ class InvoiceResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(invoice.getId().intValue())))
             .andExpect(jsonPath("$.[*].invoiceNumber").value(hasItem(DEFAULT_INVOICE_NUMBER)))
-            .andExpect(jsonPath("$.[*].paymentId").value(hasItem(DEFAULT_PAYMENT_ID)))
             .andExpect(jsonPath("$.[*].transactionId").value(hasItem(DEFAULT_TRANSACTION_ID)))
             .andExpect(jsonPath("$.[*].receiptNumber").value(hasItem(DEFAULT_RECEIPT_NUMBER)))
             .andExpect(jsonPath("$.[*].invoiceDate").value(hasItem(DEFAULT_INVOICE_DATE.toString())))
@@ -374,7 +351,6 @@ class InvoiceResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(invoice.getId().intValue()))
             .andExpect(jsonPath("$.invoiceNumber").value(DEFAULT_INVOICE_NUMBER))
-            .andExpect(jsonPath("$.paymentId").value(DEFAULT_PAYMENT_ID))
             .andExpect(jsonPath("$.transactionId").value(DEFAULT_TRANSACTION_ID))
             .andExpect(jsonPath("$.receiptNumber").value(DEFAULT_RECEIPT_NUMBER))
             .andExpect(jsonPath("$.invoiceDate").value(DEFAULT_INVOICE_DATE.toString()))
@@ -405,7 +381,6 @@ class InvoiceResourceIT {
         em.detach(updatedInvoice);
         updatedInvoice
             .invoiceNumber(UPDATED_INVOICE_NUMBER)
-            .paymentId(UPDATED_PAYMENT_ID)
             .transactionId(UPDATED_TRANSACTION_ID)
             .receiptNumber(UPDATED_RECEIPT_NUMBER)
             .invoiceDate(UPDATED_INVOICE_DATE)
@@ -499,10 +474,9 @@ class InvoiceResourceIT {
         partialUpdatedInvoice.setId(invoice.getId());
 
         partialUpdatedInvoice
-            .paymentId(UPDATED_PAYMENT_ID)
             .transactionId(UPDATED_TRANSACTION_ID)
-            .transactionType(UPDATED_TRANSACTION_TYPE)
-            .customerDetails(UPDATED_CUSTOMER_DETAILS);
+            .receiptNumber(UPDATED_RECEIPT_NUMBER)
+            .transactionAmount(UPDATED_TRANSACTION_AMOUNT);
 
         restInvoiceMockMvc
             .perform(
@@ -532,7 +506,6 @@ class InvoiceResourceIT {
 
         partialUpdatedInvoice
             .invoiceNumber(UPDATED_INVOICE_NUMBER)
-            .paymentId(UPDATED_PAYMENT_ID)
             .transactionId(UPDATED_TRANSACTION_ID)
             .receiptNumber(UPDATED_RECEIPT_NUMBER)
             .invoiceDate(UPDATED_INVOICE_DATE)

@@ -17,12 +17,12 @@ describe('Booking e2e test', () => {
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
   const bookingSample = {
     pnrNumber: 'yuck till scope',
-    bookingDate: '2025-07-11T10:41:38.815Z',
+    bookingDate: '2025-07-11T10:52:29.815Z',
     travellingDate: '2025-07-11',
     boardingStation: 'fairly boohoo unhappy',
     destinationStation: 'artistic tune-up',
-    boardingTime: '2025-07-11T14:37:58.597Z',
-    arrivalTime: '2025-07-11T12:04:31.750Z',
+    boardingTime: '2025-07-11T14:48:49.597Z',
+    arrivalTime: '2025-07-11T12:15:22.750Z',
     totalFare: 22887.28,
     bookingStatus: 'CONFIRMED',
     modeOfPayment: 'CREDIT_CARD',
@@ -177,9 +177,9 @@ describe('Booking e2e test', () => {
       cy.get(`[data-cy="pnrNumber"]`).type('ameliorate sandbar during');
       cy.get(`[data-cy="pnrNumber"]`).should('have.value', 'ameliorate sandbar during');
 
-      cy.get(`[data-cy="bookingDate"]`).type('2025-07-11T13:47');
+      cy.get(`[data-cy="bookingDate"]`).type('2025-07-11T13:58');
       cy.get(`[data-cy="bookingDate"]`).blur();
-      cy.get(`[data-cy="bookingDate"]`).should('have.value', '2025-07-11T13:47');
+      cy.get(`[data-cy="bookingDate"]`).should('have.value', '2025-07-11T13:58');
 
       cy.get(`[data-cy="travellingDate"]`).type('2025-07-11');
       cy.get(`[data-cy="travellingDate"]`).blur();
@@ -191,13 +191,13 @@ describe('Booking e2e test', () => {
       cy.get(`[data-cy="destinationStation"]`).type('consistency');
       cy.get(`[data-cy="destinationStation"]`).should('have.value', 'consistency');
 
-      cy.get(`[data-cy="boardingTime"]`).type('2025-07-11T09:41');
+      cy.get(`[data-cy="boardingTime"]`).type('2025-07-11T09:51');
       cy.get(`[data-cy="boardingTime"]`).blur();
-      cy.get(`[data-cy="boardingTime"]`).should('have.value', '2025-07-11T09:41');
+      cy.get(`[data-cy="boardingTime"]`).should('have.value', '2025-07-11T09:51');
 
-      cy.get(`[data-cy="arrivalTime"]`).type('2025-07-12T02:24');
+      cy.get(`[data-cy="arrivalTime"]`).type('2025-07-12T02:35');
       cy.get(`[data-cy="arrivalTime"]`).blur();
-      cy.get(`[data-cy="arrivalTime"]`).should('have.value', '2025-07-12T02:24');
+      cy.get(`[data-cy="arrivalTime"]`).should('have.value', '2025-07-12T02:35');
 
       cy.get(`[data-cy="totalFare"]`).type('8942.6');
       cy.get(`[data-cy="totalFare"]`).should('have.value', '8942.6');

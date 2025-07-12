@@ -19,7 +19,7 @@ describe('Payment e2e test', () => {
     paymentId: 'creator however operating',
     transactionId: 'er supposing',
     receiptNumber: 'character',
-    transactionDate: '2025-07-11T22:02:20.193Z',
+    transactionDate: '2025-07-11T22:13:11.193Z',
     transactionType: 'CREDIT',
     transactionAmount: 145.82,
     transactionStatus: 'PENDING',
@@ -174,9 +174,9 @@ describe('Payment e2e test', () => {
       cy.get(`[data-cy="receiptNumber"]`).type('confute versus');
       cy.get(`[data-cy="receiptNumber"]`).should('have.value', 'confute versus');
 
-      cy.get(`[data-cy="transactionDate"]`).type('2025-07-11T11:03');
+      cy.get(`[data-cy="transactionDate"]`).type('2025-07-11T11:14');
       cy.get(`[data-cy="transactionDate"]`).blur();
-      cy.get(`[data-cy="transactionDate"]`).should('have.value', '2025-07-11T11:03');
+      cy.get(`[data-cy="transactionDate"]`).should('have.value', '2025-07-11T11:14');
 
       cy.get(`[data-cy="transactionType"]`).select('DEBIT');
 

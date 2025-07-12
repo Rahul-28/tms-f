@@ -19,7 +19,6 @@
       },
       "id": "ID",
       "invoiceNumber": "Invoice Number",
-      "paymentId": "Payment Id",
       "transactionId": "Transaction Id",
       "receiptNumber": "Receipt Number",
       "invoiceDate": "Invoice Date",

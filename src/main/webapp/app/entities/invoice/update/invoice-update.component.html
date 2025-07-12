@@ -35,19 +35,6 @@
           }
         </div>
 
-        @let paymentIdRef = editForm.get('paymentId')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_paymentId" jhiTranslate="jhipsterApp.invoice.paymentId">Payment Id</label>
-          <input type="text" class="form-control" name="paymentId" id="field_paymentId" data-cy="paymentId" formControlName="paymentId" />
-          @if (paymentIdRef.invalid && (paymentIdRef.dirty || paymentIdRef.touched)) {
-            <div>
-              @if (editForm.get('paymentId')?.errors?.required) {
-                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
-              }
-            </div>
-          }
-        </div>
-
         @let transactionIdRef = editForm.get('transactionId')!;
         <div class="mb-3">
           <label class="form-label" for="field_transactionId" jhiTranslate="jhipsterApp.invoice.transactionId">Transaction Id</label>

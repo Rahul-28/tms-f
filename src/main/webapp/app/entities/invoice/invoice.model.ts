@@ -6,7 +6,6 @@ import { TransactionStatus } from 'app/entities/enumerations/transaction-status.
 export interface IInvoice {
   id: number;
   invoiceNumber?: string | null;
-  paymentId?: string | null;
   transactionId?: string | null;
   receiptNumber?: string | null;
   invoiceDate?: dayjs.Dayjs | null;

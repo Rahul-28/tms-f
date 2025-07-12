@@ -1,6 +1,6 @@
 {
   "annotations": {
-    "changelogDate": "20250712062302"
+    "changelogDate": "20250712063353"
   },
   "applications": ["jhipster"],
   "dto": "mapstruct",
@@ -9,11 +9,6 @@
       "fieldName": "invoiceNumber",
       "fieldType": "String",
       "fieldValidateRules": ["required", "unique"]
-    },
-    {
-      "fieldName": "paymentId",
-      "fieldType": "String",
-      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "transactionId",
@@ -57,7 +52,7 @@
   "relationships": [
     {
       "otherEntityName": "payment",
-      "otherEntityRelationshipName": "invoice",
+      "otherEntityRelationshipName": "invoices",
       "relationshipName": "payment",
       "relationshipSide": "right",
       "relationshipType": "many-to-one"

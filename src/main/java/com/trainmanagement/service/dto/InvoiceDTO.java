@@ -20,9 +20,6 @@ public class InvoiceDTO implements Serializable {
     private String invoiceNumber;
 
     @NotNull
-    private String paymentId;
-
-    @NotNull
     private String transactionId;
 
     @NotNull
@@ -59,14 +56,6 @@ public class InvoiceDTO implements Serializable {
 
     public void setInvoiceNumber(String invoiceNumber) {
         this.invoiceNumber = invoiceNumber;
-    }
-
-    public String getPaymentId() {
-        return paymentId;
-    }
-
-    public void setPaymentId(String paymentId) {
-        this.paymentId = paymentId;
     }
 
     public String getTransactionId() {
@@ -160,7 +149,6 @@ public class InvoiceDTO implements Serializable {
         return "InvoiceDTO{" +
             "id=" + getId() +
             ", invoiceNumber='" + getInvoiceNumber() + "'" +
-            ", paymentId='" + getPaymentId() + "'" +
             ", transactionId='" + getTransactionId() + "'" +
             ", receiptNumber='" + getReceiptNumber() + "'" +
             ", invoiceDate='" + getInvoiceDate() + "'" +

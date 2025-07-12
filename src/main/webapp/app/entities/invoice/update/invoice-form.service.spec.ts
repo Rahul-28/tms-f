@@ -21,7 +21,6 @@ describe('Invoice Form Service', () => {
           expect.objectContaining({
             id: expect.any(Object),
             invoiceNumber: expect.any(Object),
-            paymentId: expect.any(Object),
             transactionId: expect.any(Object),
             receiptNumber: expect.any(Object),
             invoiceDate: expect.any(Object),
@@ -41,7 +40,6 @@ describe('Invoice Form Service', () => {
           expect.objectContaining({
             id: expect.any(Object),
             invoiceNumber: expect.any(Object),
-            paymentId: expect.any(Object),
             transactionId: expect.any(Object),
             receiptNumber: expect.any(Object),
             invoiceDate: expect.any(Object),

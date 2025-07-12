@@ -34,7 +34,7 @@ export const sampleWithFullData: ICustomer = {
   aadhaarNumber: '273272551210',
   address: 'secularize but sharply',
   contactInformation: 'card after jut',
-  registrationDate: dayjs('2025-07-11T23:16'),
+  registrationDate: dayjs('2025-07-11T23:27'),
   isActive: false,
 };
 

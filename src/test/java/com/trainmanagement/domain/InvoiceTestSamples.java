@@ -13,7 +13,6 @@ public class InvoiceTestSamples {
         return new Invoice()
             .id(1L)
             .invoiceNumber("invoiceNumber1")
-            .paymentId("paymentId1")
             .transactionId("transactionId1")
             .receiptNumber("receiptNumber1")
             .customerDetails("customerDetails1");
@@ -23,7 +22,6 @@ public class InvoiceTestSamples {
         return new Invoice()
             .id(2L)
             .invoiceNumber("invoiceNumber2")
-            .paymentId("paymentId2")
             .transactionId("transactionId2")
             .receiptNumber("receiptNumber2")
             .customerDetails("customerDetails2");
@@ -33,7 +31,6 @@ public class InvoiceTestSamples {
         return new Invoice()
             .id(longCount.incrementAndGet())
             .invoiceNumber(UUID.randomUUID().toString())
-            .paymentId(UUID.randomUUID().toString())
             .transactionId(UUID.randomUUID().toString())
             .receiptNumber(UUID.randomUUID().toString())
             .customerDetails(UUID.randomUUID().toString());

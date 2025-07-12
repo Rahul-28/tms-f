@@ -259,13 +259,13 @@ public class Payment implements Serializable {
         return this;
     }
 
-    public Payment addInvoice(Invoice invoice) {
+    public Payment addInvoices(Invoice invoice) {
         this.invoices.add(invoice);
         invoice.setPayment(this);
         return this;
     }
 
-    public Payment removeInvoice(Invoice invoice) {
+    public Payment removeInvoices(Invoice invoice) {
         this.invoices.remove(invoice);
         invoice.setPayment(null);
         return this;

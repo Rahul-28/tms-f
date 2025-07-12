@@ -116,9 +116,9 @@ entity Payment {
   cvv String pattern(/^[0-9]{3}$/)
   cardholderName String
 }
+// Fixed Invoice entity - removed paymentId field since we have a relationship
 entity Invoice {
     invoiceNumber String required unique
-  paymentId String required
   transactionId String required
   receiptNumber String required
   invoiceDate Instant required
@@ -134,7 +134,7 @@ relationship OneToMany {
   Train{trainCoaches} to TrainCoach{train}
   Booking{passengers} to Passenger{booking}
   Booking{payment} to Payment{booking}
-  Payment{invoice} to Invoice{payment}
+  Payment{invoices} to Invoice{payment}
 }
 relationship ManyToOne {
     TrainCoach{coachType} to CoachType

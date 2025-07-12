@@ -29,7 +29,7 @@
       "expiryDate": "Expiry Date",
       "cvv": "Cvv",
       "cardholderName": "Cardholder Name",
-      "invoice": "Invoice",
+      "invoices": "Invoices",
       "booking": "Booking"
     }
   }

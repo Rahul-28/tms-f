@@ -87,7 +87,7 @@ class PaymentCriteriaTest {
         paymentCriteria.expiryDate();
         paymentCriteria.cvv();
         paymentCriteria.cardholderName();
-        paymentCriteria.invoiceId();
+        paymentCriteria.invoicesId();
         paymentCriteria.bookingId();
         paymentCriteria.distinct();
     }
@@ -107,7 +107,7 @@ class PaymentCriteriaTest {
                 condition.apply(criteria.getExpiryDate()) &&
                 condition.apply(criteria.getCvv()) &&
                 condition.apply(criteria.getCardholderName()) &&
-                condition.apply(criteria.getInvoiceId()) &&
+                condition.apply(criteria.getInvoicesId()) &&
                 condition.apply(criteria.getBookingId()) &&
                 condition.apply(criteria.getDistinct()),
             "every filter matches"
@@ -129,7 +129,7 @@ class PaymentCriteriaTest {
                 condition.apply(criteria.getExpiryDate(), copy.getExpiryDate()) &&
                 condition.apply(criteria.getCvv(), copy.getCvv()) &&
                 condition.apply(criteria.getCardholderName(), copy.getCardholderName()) &&
-                condition.apply(criteria.getInvoiceId(), copy.getInvoiceId()) &&
+                condition.apply(criteria.getInvoicesId(), copy.getInvoicesId()) &&
                 condition.apply(criteria.getBookingId(), copy.getBookingId()) &&
                 condition.apply(criteria.getDistinct(), copy.getDistinct()),
             "every filter matches"

@@ -32,7 +32,6 @@ type InvoiceFormDefaults = Pick<NewInvoice, 'id' | 'invoiceDate'>;
 type InvoiceFormGroupContent = {
   id: FormControl<InvoiceFormRawValue['id'] | NewInvoice['id']>;
   invoiceNumber: FormControl<InvoiceFormRawValue['invoiceNumber']>;
-  paymentId: FormControl<InvoiceFormRawValue['paymentId']>;
   transactionId: FormControl<InvoiceFormRawValue['transactionId']>;
   receiptNumber: FormControl<InvoiceFormRawValue['receiptNumber']>;
   invoiceDate: FormControl<InvoiceFormRawValue['invoiceDate']>;
@@ -61,9 +60,6 @@ export class InvoiceFormService {
         },
       ),
       invoiceNumber: new FormControl(invoiceRawValue.invoiceNumber, {
-        validators: [Validators.required],
-      }),
-      paymentId: new FormControl(invoiceRawValue.paymentId, {
         validators: [Validators.required],
       }),
       transactionId: new FormControl(invoiceRawValue.transactionId, {

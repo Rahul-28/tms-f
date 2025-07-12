@@ -27,15 +27,15 @@ class PaymentTest {
     }
 
     @Test
-    void invoiceTest() {
+    void invoicesTest() {
         Payment payment = getPaymentRandomSampleGenerator();
         Invoice invoiceBack = getInvoiceRandomSampleGenerator();
 
-        payment.addInvoice(invoiceBack);
+        payment.addInvoices(invoiceBack);
         assertThat(payment.getInvoices()).containsOnly(invoiceBack);
         assertThat(invoiceBack.getPayment()).isEqualTo(payment);
 
-        payment.removeInvoice(invoiceBack);
+        payment.removeInvoices(invoiceBack);
         assertThat(payment.getInvoices()).doesNotContain(invoiceBack);
         assertThat(invoiceBack.getPayment()).isNull();
 

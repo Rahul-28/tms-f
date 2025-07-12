@@ -49,7 +49,6 @@ public class InvoiceAsserts {
         assertThat(actual)
             .as("Verify Invoice relevant properties")
             .satisfies(a -> assertThat(a.getInvoiceNumber()).as("check invoiceNumber").isEqualTo(expected.getInvoiceNumber()))
-            .satisfies(a -> assertThat(a.getPaymentId()).as("check paymentId").isEqualTo(expected.getPaymentId()))
             .satisfies(a -> assertThat(a.getTransactionId()).as("check transactionId").isEqualTo(expected.getTransactionId()))
             .satisfies(a -> assertThat(a.getReceiptNumber()).as("check receiptNumber").isEqualTo(expected.getReceiptNumber()))
             .satisfies(a -> assertThat(a.getInvoiceDate()).as("check invoiceDate").isEqualTo(expected.getInvoiceDate()))

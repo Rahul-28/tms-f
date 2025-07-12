@@ -47,13 +47,6 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
-            <th scope="col" jhiSortBy="paymentId">
-              <div class="d-flex">
-                <span jhiTranslate="jhipsterApp.invoice.paymentId">Payment Id</span>
-
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
             <th scope="col" jhiSortBy="transactionId">
               <div class="d-flex">
                 <span jhiTranslate="jhipsterApp.invoice.transactionId">Transaction Id</span>
@@ -119,7 +112,6 @@
                 <a [routerLink]="['/invoice', invoice.id, 'view']">{{ invoice.id }}</a>
               </td>
               <td>{{ invoice.invoiceNumber }}</td>
-              <td>{{ invoice.paymentId }}</td>
               <td>{{ invoice.transactionId }}</td>
               <td>{{ invoice.receiptNumber }}</td>
               <td>{{ invoice.invoiceDate | formatMediumDatetime }}</td>

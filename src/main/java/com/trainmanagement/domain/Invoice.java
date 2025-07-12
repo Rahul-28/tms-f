@@ -32,10 +32,6 @@ public class Invoice implements Serializable {
     private String invoiceNumber;
 
     @NotNull
-    @Column(name = "payment_id", nullable = false)
-    private String paymentId;
-
-    @NotNull
     @Column(name = "transaction_id", nullable = false)
     private String transactionId;
 
@@ -95,19 +91,6 @@ public class Invoice implements Serializable {
 
     public void setInvoiceNumber(String invoiceNumber) {
         this.invoiceNumber = invoiceNumber;
-    }
-
-    public String getPaymentId() {
-        return this.paymentId;
-    }
-
-    public Invoice paymentId(String paymentId) {
-        this.setPaymentId(paymentId);
-        return this;
-    }
-
-    public void setPaymentId(String paymentId) {
-        this.paymentId = paymentId;
     }
 
     public String getTransactionId() {
@@ -239,7 +222,6 @@ public class Invoice implements Serializable {
         return "Invoice{" +
             "id=" + getId() +
             ", invoiceNumber='" + getInvoiceNumber() + "'" +
-            ", paymentId='" + getPaymentId() + "'" +
             ", transactionId='" + getTransactionId() + "'" +
             ", receiptNumber='" + getReceiptNumber() + "'" +
             ", invoiceDate='" + getInvoiceDate() + "'" +

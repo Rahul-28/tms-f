@@ -9,7 +9,7 @@
     <!--
         Added the entity CoachType.
     -->
-    <changeSet id="20250712061802-1" author="jhipster">
+    <changeSet id="20250712062853-1" author="jhipster">
         <createTable tableName="coach_type">
             <column name="id" type="bigint" autoIncrement="true" startWith="1500">
                 <constraints primaryKey="true" nullable="false"/>
@@ -40,7 +40,7 @@
           This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
           Spring Boot configuration key.
     -->
-    <changeSet id="20250712061802-1-data" author="jhipster" context="faker">
+    <changeSet id="20250712062853-1-data" author="jhipster" context="faker">
         <loadData
                   file="config/liquibase/fake-data/coach_type.csv"
                   separator=";"

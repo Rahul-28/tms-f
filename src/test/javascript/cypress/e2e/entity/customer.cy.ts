@@ -192,9 +192,9 @@ describe('Customer e2e test', () => {
       cy.get(`[data-cy="contactInformation"]`).type('worth');
       cy.get(`[data-cy="contactInformation"]`).should('have.value', 'worth');
 
-      cy.get(`[data-cy="registrationDate"]`).type('2025-07-11T09:32');
+      cy.get(`[data-cy="registrationDate"]`).type('2025-07-11T09:43');
       cy.get(`[data-cy="registrationDate"]`).blur();
-      cy.get(`[data-cy="registrationDate"]`).should('have.value', '2025-07-11T09:32');
+      cy.get(`[data-cy="registrationDate"]`).should('have.value', '2025-07-11T09:43');
 
       cy.get(`[data-cy="isActive"]`).should('not.be.checked');
       cy.get(`[data-cy="isActive"]`).click();

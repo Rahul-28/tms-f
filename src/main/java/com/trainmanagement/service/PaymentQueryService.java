@@ -83,7 +83,7 @@ public class PaymentQueryService extends QueryService<Payment> {
                 buildStringSpecification(criteria.getExpiryDate(), Payment_.expiryDate),
                 buildStringSpecification(criteria.getCvv(), Payment_.cvv),
                 buildStringSpecification(criteria.getCardholderName(), Payment_.cardholderName),
-                buildSpecification(criteria.getInvoiceId(), root -> root.join(Payment_.invoices, JoinType.LEFT).get(Invoice_.id)),
+                buildSpecification(criteria.getInvoicesId(), root -> root.join(Payment_.invoices, JoinType.LEFT).get(Invoice_.id)),
                 buildSpecification(criteria.getBookingId(), root -> root.join(Payment_.booking, JoinType.LEFT).get(Booking_.id))
             );
         }

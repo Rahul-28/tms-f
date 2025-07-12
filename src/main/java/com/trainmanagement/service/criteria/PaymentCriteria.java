@@ -82,7 +82,7 @@ public class PaymentCriteria implements Serializable, Criteria {
 
     private StringFilter cardholderName;
 
-    private LongFilter invoiceId;
+    private LongFilter invoicesId;
 
     private LongFilter bookingId;
 
@@ -103,7 +103,7 @@ public class PaymentCriteria implements Serializable, Criteria {
         this.expiryDate = other.optionalExpiryDate().map(StringFilter::copy).orElse(null);
         this.cvv = other.optionalCvv().map(StringFilter::copy).orElse(null);
         this.cardholderName = other.optionalCardholderName().map(StringFilter::copy).orElse(null);
-        this.invoiceId = other.optionalInvoiceId().map(LongFilter::copy).orElse(null);
+        this.invoicesId = other.optionalInvoicesId().map(LongFilter::copy).orElse(null);
         this.bookingId = other.optionalBookingId().map(LongFilter::copy).orElse(null);
         this.distinct = other.distinct;
     }
@@ -341,23 +341,23 @@ public class PaymentCriteria implements Serializable, Criteria {
         this.cardholderName = cardholderName;
     }
 
-    public LongFilter getInvoiceId() {
-        return invoiceId;
+    public LongFilter getInvoicesId() {
+        return invoicesId;
     }
 
-    public Optional<LongFilter> optionalInvoiceId() {
-        return Optional.ofNullable(invoiceId);
+    public Optional<LongFilter> optionalInvoicesId() {
+        return Optional.ofNullable(invoicesId);
     }
 
-    public LongFilter invoiceId() {
-        if (invoiceId == null) {
-            setInvoiceId(new LongFilter());
+    public LongFilter invoicesId() {
+        if (invoicesId == null) {
+            setInvoicesId(new LongFilter());
         }
-        return invoiceId;
+        return invoicesId;
     }
 
-    public void setInvoiceId(LongFilter invoiceId) {
-        this.invoiceId = invoiceId;
+    public void setInvoicesId(LongFilter invoicesId) {
+        this.invoicesId = invoicesId;
     }
 
     public LongFilter getBookingId() {
@@ -420,7 +420,7 @@ public class PaymentCriteria implements Serializable, Criteria {
             Objects.equals(expiryDate, that.expiryDate) &&
             Objects.equals(cvv, that.cvv) &&
             Objects.equals(cardholderName, that.cardholderName) &&
-            Objects.equals(invoiceId, that.invoiceId) &&
+            Objects.equals(invoicesId, that.invoicesId) &&
             Objects.equals(bookingId, that.bookingId) &&
             Objects.equals(distinct, that.distinct)
         );
@@ -441,7 +441,7 @@ public class PaymentCriteria implements Serializable, Criteria {
             expiryDate,
             cvv,
             cardholderName,
-            invoiceId,
+            invoicesId,
             bookingId,
             distinct
         );
@@ -463,7 +463,7 @@ public class PaymentCriteria implements Serializable, Criteria {
             optionalExpiryDate().map(f -> "expiryDate=" + f + ", ").orElse("") +
             optionalCvv().map(f -> "cvv=" + f + ", ").orElse("") +
             optionalCardholderName().map(f -> "cardholderName=" + f + ", ").orElse("") +
-            optionalInvoiceId().map(f -> "invoiceId=" + f + ", ").orElse("") +
+            optionalInvoicesId().map(f -> "invoicesId=" + f + ", ").orElse("") +
             optionalBookingId().map(f -> "bookingId=" + f + ", ").orElse("") +
             optionalDistinct().map(f -> "distinct=" + f + ", ").orElse("") +
         "}";

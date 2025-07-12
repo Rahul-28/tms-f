@@ -16,15 +16,14 @@ describe('Invoice e2e test', () => {
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
   const invoiceSample = {
-    invoiceNumber: 'since speedily yahoo',
-    paymentId: 'when thoughtfully onto',
-    transactionId: 'well',
-    receiptNumber: 'out er profane',
-    invoiceDate: '2025-07-11T22:30:04.877Z',
+    invoiceNumber: 'of effector',
+    transactionId: 'however ick up',
+    receiptNumber: 'speedily yahoo worriedly',
+    invoiceDate: '2025-07-12T00:34:49.149Z',
     transactionType: 'DEBIT',
-    transactionAmount: 12338.69,
-    transactionStatus: 'SUCCESS',
-    customerDetails: 'submitter',
+    transactionAmount: 30326.25,
+    transactionStatus: 'PENDING',
+    customerDetails: 'ha schedule rear',
   };
 
   let invoice;
@@ -167,31 +166,28 @@ describe('Invoice e2e test', () => {
     });
 
     it('should create an instance of Invoice', () => {
-      cy.get(`[data-cy="invoiceNumber"]`).type('secret gah utilization');
-      cy.get(`[data-cy="invoiceNumber"]`).should('have.value', 'secret gah utilization');
+      cy.get(`[data-cy="invoiceNumber"]`).type('partial');
+      cy.get(`[data-cy="invoiceNumber"]`).should('have.value', 'partial');
 
-      cy.get(`[data-cy="paymentId"]`).type('partial instead');
-      cy.get(`[data-cy="paymentId"]`).should('have.value', 'partial instead');
+      cy.get(`[data-cy="transactionId"]`).type('gah utilization monster');
+      cy.get(`[data-cy="transactionId"]`).should('have.value', 'gah utilization monster');
 
-      cy.get(`[data-cy="transactionId"]`).type('availability out');
-      cy.get(`[data-cy="transactionId"]`).should('have.value', 'availability out');
+      cy.get(`[data-cy="receiptNumber"]`).type('instead appropriate');
+      cy.get(`[data-cy="receiptNumber"]`).should('have.value', 'instead appropriate');
 
-      cy.get(`[data-cy="receiptNumber"]`).type('boo rightfully ah');
-      cy.get(`[data-cy="receiptNumber"]`).should('have.value', 'boo rightfully ah');
-
-      cy.get(`[data-cy="invoiceDate"]`).type('2025-07-12T04:35');
+      cy.get(`[data-cy="invoiceDate"]`).type('2025-07-11T07:50');
       cy.get(`[data-cy="invoiceDate"]`).blur();
-      cy.get(`[data-cy="invoiceDate"]`).should('have.value', '2025-07-12T04:35');
+      cy.get(`[data-cy="invoiceDate"]`).should('have.value', '2025-07-11T07:50');
 
-      cy.get(`[data-cy="transactionType"]`).select('DEBIT');
+      cy.get(`[data-cy="transactionType"]`).select('CREDIT');
 
-      cy.get(`[data-cy="transactionAmount"]`).type('2179.79');
-      cy.get(`[data-cy="transactionAmount"]`).should('have.value', '2179.79');
+      cy.get(`[data-cy="transactionAmount"]`).type('17901.08');
+      cy.get(`[data-cy="transactionAmount"]`).should('have.value', '17901.08');
 
-      cy.get(`[data-cy="transactionStatus"]`).select('PENDING');
+      cy.get(`[data-cy="transactionStatus"]`).select('FAILED');
 
-      cy.get(`[data-cy="customerDetails"]`).type('ick');
-      cy.get(`[data-cy="customerDetails"]`).should('have.value', 'ick');
+      cy.get(`[data-cy="customerDetails"]`).type('display');
+      cy.get(`[data-cy="customerDetails"]`).should('have.value', 'display');
 
       cy.get(entityCreateSaveButtonSelector).click();
 
