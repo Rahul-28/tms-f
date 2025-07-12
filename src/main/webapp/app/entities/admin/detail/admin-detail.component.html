@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (admin(); as adminRef) {
+      <div>
+        <h2 data-cy="adminDetailsHeading"><span jhiTranslate="jhipsterApp.admin.detail.title">Admin</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ adminRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.admin.adminId">Admin Id</span></dt>
+          <dd>
+            <span>{{ adminRef.adminId }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.admin.username">Username</span></dt>
+          <dd>
+            <span>{{ adminRef.username }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.admin.password">Password</span></dt>
+          <dd>
+            <span>{{ adminRef.password }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.admin.email">Email</span></dt>
+          <dd>
+            <span>{{ adminRef.email }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.admin.isActive">Is Active</span></dt>
+          <dd>
+            <span>{{ adminRef.isActive }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/admin', adminRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

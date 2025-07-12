@@ -1,0 +1,40 @@
+{
+  "jhipsterApp": {
+    "booking": {
+      "home": {
+        "title": "Bookings",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Booking",
+        "createOrEditLabel": "Create or edit a Booking",
+        "notFound": "No Bookings found"
+      },
+      "created": "A new Booking is created with identifier {{ param }}",
+      "updated": "A Booking is updated with identifier {{ param }}",
+      "deleted": "A Booking is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Booking {{ id }}?"
+      },
+      "detail": {
+        "title": "Booking"
+      },
+      "id": "ID",
+      "pnrNumber": "Pnr Number",
+      "bookingDate": "Booking Date",
+      "travellingDate": "Travelling Date",
+      "boardingStation": "Boarding Station",
+      "destinationStation": "Destination Station",
+      "boardingTime": "Boarding Time",
+      "arrivalTime": "Arrival Time",
+      "totalFare": "Total Fare",
+      "bookingStatus": "Booking Status",
+      "modeOfPayment": "Mode Of Payment",
+      "additionalServices": "Additional Services",
+      "coachNumber": "Coach Number",
+      "seatNumber": "Seat Number",
+      "passengers": "Passengers",
+      "payment": "Payment",
+      "customer": "Customer",
+      "train": "Train"
+    }
+  }
+}

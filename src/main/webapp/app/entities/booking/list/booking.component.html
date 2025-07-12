@@ -1,0 +1,235 @@
+<div>
+  <h2 id="page-heading" data-cy="BookingHeading">
+    <span jhiTranslate="jhipsterApp.booking.home.title">Bookings</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="jhipsterApp.booking.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-booking"
+        [routerLink]="['/booking/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="jhipsterApp.booking.home.createLabel">Create a new Booking</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  <jhi-filter [filters]="filters" />
+
+  @if (bookings().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="jhipsterApp.booking.home.notFound">No Bookings found</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="pnrNumber">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterApp.booking.pnrNumber">Pnr Number</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="bookingDate">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterApp.booking.bookingDate">Booking Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="travellingDate">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterApp.booking.travellingDate">Travelling Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="boardingStation">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterApp.booking.boardingStation">Boarding Station</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="destinationStation">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterApp.booking.destinationStation">Destination Station</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="boardingTime">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterApp.booking.boardingTime">Boarding Time</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="arrivalTime">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterApp.booking.arrivalTime">Arrival Time</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="totalFare">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterApp.booking.totalFare">Total Fare</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="bookingStatus">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterApp.booking.bookingStatus">Booking Status</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="modeOfPayment">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterApp.booking.modeOfPayment">Mode Of Payment</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="additionalServices">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterApp.booking.additionalServices">Additional Services</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="coachNumber">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterApp.booking.coachNumber">Coach Number</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="seatNumber">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterApp.booking.seatNumber">Seat Number</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="customer.id">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterApp.booking.customer">Customer</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="train.id">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterApp.booking.train">Train</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (booking of bookings(); track trackId(booking)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/booking', booking.id, 'view']">{{ booking.id }}</a>
+              </td>
+              <td>{{ booking.pnrNumber }}</td>
+              <td>{{ booking.bookingDate | formatMediumDatetime }}</td>
+              <td>{{ booking.travellingDate | formatMediumDate }}</td>
+              <td>{{ booking.boardingStation }}</td>
+              <td>{{ booking.destinationStation }}</td>
+              <td>{{ booking.boardingTime | formatMediumDatetime }}</td>
+              <td>{{ booking.arrivalTime | formatMediumDatetime }}</td>
+              <td>{{ booking.totalFare }}</td>
+              <td [jhiTranslate]="'jhipsterApp.BookingStatus.' + (booking.bookingStatus ?? 'null')">
+                {{
+                  { null: '', CONFIRMED: 'CONFIRMED', CANCELLED: 'CANCELLED', PENDING: 'PENDING', COMPLETED: 'COMPLETED' }[
+                    booking.bookingStatus ?? 'null'
+                  ]
+                }}
+              </td>
+              <td [jhiTranslate]="'jhipsterApp.PaymentMode.' + (booking.modeOfPayment ?? 'null')">
+                {{ { null: '', CREDIT_CARD: 'CREDIT_CARD', DEBIT_CARD: 'DEBIT_CARD' }[booking.modeOfPayment ?? 'null'] }}
+              </td>
+              <td>{{ booking.additionalServices }}</td>
+              <td>{{ booking.coachNumber }}</td>
+              <td>{{ booking.seatNumber }}</td>
+              <td>
+                @if (booking.customer) {
+                  <div>
+                    <a [routerLink]="['/customer', booking.customer.id, 'view']">{{ booking.customer.id }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (booking.train) {
+                  <div>
+                    <a [routerLink]="['/train', booking.train.id, 'view']">{{ booking.train.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/booking', booking.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/booking', booking.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(booking)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (bookings().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page, totalItems, itemsPerPage }" />
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,28 @@
+{
+  "jhipsterApp": {
+    "passenger": {
+      "home": {
+        "title": "Passengers",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Passenger",
+        "createOrEditLabel": "Create or edit a Passenger",
+        "notFound": "No Passengers found"
+      },
+      "created": "A new Passenger is created with identifier {{ param }}",
+      "updated": "A Passenger is updated with identifier {{ param }}",
+      "deleted": "A Passenger is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Passenger {{ id }}?"
+      },
+      "detail": {
+        "title": "Passenger"
+      },
+      "id": "ID",
+      "passengerName": "Passenger Name",
+      "age": "Age",
+      "coachNumber": "Coach Number",
+      "seatNumber": "Seat Number",
+      "booking": "Booking"
+    }
+  }
+}

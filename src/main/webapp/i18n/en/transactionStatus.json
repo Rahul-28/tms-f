@@ -1,0 +1,10 @@
+{
+  "jhipsterApp": {
+    "TransactionStatus": {
+      "null": "",
+      "SUCCESS": "SUCCESS",
+      "FAILED": "FAILED",
+      "PENDING": "PENDING"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "jhipsterApp": {
+    "trainCoach": {
+      "home": {
+        "title": "Train Coaches",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Train Coach",
+        "createOrEditLabel": "Create or edit a Train Coach",
+        "notFound": "No Train Coaches found"
+      },
+      "created": "A new Train Coach is created with identifier {{ param }}",
+      "updated": "A Train Coach is updated with identifier {{ param }}",
+      "deleted": "A Train Coach is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Train Coach {{ id }}?"
+      },
+      "detail": {
+        "title": "Train Coach"
+      },
+      "id": "ID",
+      "trainNumber": "Train Number",
+      "seatCapacity": "Seat Capacity",
+      "availableSeats": "Available Seats",
+      "farePrice": "Fare Price",
+      "coachType": "Coach Type",
+      "train": "Train"
+    }
+  }
+}

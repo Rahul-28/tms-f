@@ -1,0 +1,36 @@
+{
+  "jhipsterApp": {
+    "payment": {
+      "home": {
+        "title": "Payments",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Payment",
+        "createOrEditLabel": "Create or edit a Payment",
+        "notFound": "No Payments found"
+      },
+      "created": "A new Payment is created with identifier {{ param }}",
+      "updated": "A Payment is updated with identifier {{ param }}",
+      "deleted": "A Payment is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Payment {{ id }}?"
+      },
+      "detail": {
+        "title": "Payment"
+      },
+      "id": "ID",
+      "paymentId": "Payment Id",
+      "transactionId": "Transaction Id",
+      "receiptNumber": "Receipt Number",
+      "transactionDate": "Transaction Date",
+      "transactionType": "Transaction Type",
+      "transactionAmount": "Transaction Amount",
+      "transactionStatus": "Transaction Status",
+      "cardNumber": "Card Number",
+      "expiryDate": "Expiry Date",
+      "cvv": "Cvv",
+      "cardholderName": "Cardholder Name",
+      "invoice": "Invoice",
+      "booking": "Booking"
+    }
+  }
+}

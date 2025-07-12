@@ -1,0 +1,104 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (booking(); as bookingRef) {
+      <div>
+        <h2 data-cy="bookingDetailsHeading"><span jhiTranslate="jhipsterApp.booking.detail.title">Booking</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ bookingRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.booking.pnrNumber">Pnr Number</span></dt>
+          <dd>
+            <span>{{ bookingRef.pnrNumber }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.booking.bookingDate">Booking Date</span></dt>
+          <dd>
+            <span>{{ bookingRef.bookingDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.booking.travellingDate">Travelling Date</span></dt>
+          <dd>
+            <span>{{ bookingRef.travellingDate | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.booking.boardingStation">Boarding Station</span></dt>
+          <dd>
+            <span>{{ bookingRef.boardingStation }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.booking.destinationStation">Destination Station</span></dt>
+          <dd>
+            <span>{{ bookingRef.destinationStation }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.booking.boardingTime">Boarding Time</span></dt>
+          <dd>
+            <span>{{ bookingRef.boardingTime | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.booking.arrivalTime">Arrival Time</span></dt>
+          <dd>
+            <span>{{ bookingRef.arrivalTime | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.booking.totalFare">Total Fare</span></dt>
+          <dd>
+            <span>{{ bookingRef.totalFare }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.booking.bookingStatus">Booking Status</span></dt>
+          <dd>
+            <span [jhiTranslate]="'jhipsterApp.BookingStatus.' + (bookingRef.bookingStatus ?? 'null')">{{
+              { null: '', CONFIRMED: 'CONFIRMED', CANCELLED: 'CANCELLED', PENDING: 'PENDING', COMPLETED: 'COMPLETED' }[
+                bookingRef.bookingStatus ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.booking.modeOfPayment">Mode Of Payment</span></dt>
+          <dd>
+            <span [jhiTranslate]="'jhipsterApp.PaymentMode.' + (bookingRef.modeOfPayment ?? 'null')">{{
+              { null: '', CREDIT_CARD: 'CREDIT_CARD', DEBIT_CARD: 'DEBIT_CARD' }[bookingRef.modeOfPayment ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.booking.additionalServices">Additional Services</span></dt>
+          <dd>
+            <span>{{ bookingRef.additionalServices }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.booking.coachNumber">Coach Number</span></dt>
+          <dd>
+            <span>{{ bookingRef.coachNumber }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.booking.seatNumber">Seat Number</span></dt>
+          <dd>
+            <span>{{ bookingRef.seatNumber }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.booking.customer">Customer</span></dt>
+          <dd>
+            @if (booking()!.customer) {
+              <div>
+                <a [routerLink]="['/customer', booking()!.customer?.id, 'view']">{{ bookingRef.customer?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.booking.train">Train</span></dt>
+          <dd>
+            @if (booking()!.train) {
+              <div>
+                <a [routerLink]="['/train', booking()!.train?.id, 'view']">{{ bookingRef.train?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/booking', bookingRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

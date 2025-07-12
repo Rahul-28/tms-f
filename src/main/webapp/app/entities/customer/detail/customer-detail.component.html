@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (customer(); as customerRef) {
+      <div>
+        <h2 data-cy="customerDetailsHeading"><span jhiTranslate="jhipsterApp.customer.detail.title">Customer</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ customerRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.customer.customerId">Customer Id</span></dt>
+          <dd>
+            <span>{{ customerRef.customerId }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.customer.username">Username</span></dt>
+          <dd>
+            <span>{{ customerRef.username }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.customer.password">Password</span></dt>
+          <dd>
+            <span>{{ customerRef.password }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.customer.email">Email</span></dt>
+          <dd>
+            <span>{{ customerRef.email }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.customer.mobileNumber">Mobile Number</span></dt>
+          <dd>
+            <span>{{ customerRef.mobileNumber }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.customer.aadhaarNumber">Aadhaar Number</span></dt>
+          <dd>
+            <span>{{ customerRef.aadhaarNumber }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.customer.address">Address</span></dt>
+          <dd>
+            <span>{{ customerRef.address }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.customer.contactInformation">Contact Information</span></dt>
+          <dd>
+            <span>{{ customerRef.contactInformation }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.customer.registrationDate">Registration Date</span></dt>
+          <dd>
+            <span>{{ customerRef.registrationDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.customer.isActive">Is Active</span></dt>
+          <dd>
+            <span>{{ customerRef.isActive }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/customer', customerRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

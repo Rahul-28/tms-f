@@ -1,0 +1,181 @@
+<div>
+  <h2 id="page-heading" data-cy="PaymentHeading">
+    <span jhiTranslate="jhipsterApp.payment.home.title">Payments</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="jhipsterApp.payment.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-payment"
+        [routerLink]="['/payment/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="jhipsterApp.payment.home.createLabel">Create a new Payment</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  @if (payments().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="jhipsterApp.payment.home.notFound">No Payments found</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="paymentId">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterApp.payment.paymentId">Payment Id</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="transactionId">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterApp.payment.transactionId">Transaction Id</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="receiptNumber">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterApp.payment.receiptNumber">Receipt Number</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="transactionDate">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterApp.payment.transactionDate">Transaction Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="transactionType">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterApp.payment.transactionType">Transaction Type</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="transactionAmount">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterApp.payment.transactionAmount">Transaction Amount</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="transactionStatus">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterApp.payment.transactionStatus">Transaction Status</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cardNumber">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterApp.payment.cardNumber">Card Number</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="expiryDate">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterApp.payment.expiryDate">Expiry Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cvv">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterApp.payment.cvv">Cvv</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cardholderName">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterApp.payment.cardholderName">Cardholder Name</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="booking.id">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterApp.payment.booking">Booking</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (payment of payments(); track trackId(payment)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/payment', payment.id, 'view']">{{ payment.id }}</a>
+              </td>
+              <td>{{ payment.paymentId }}</td>
+              <td>{{ payment.transactionId }}</td>
+              <td>{{ payment.receiptNumber }}</td>
+              <td>{{ payment.transactionDate | formatMediumDatetime }}</td>
+              <td [jhiTranslate]="'jhipsterApp.TransactionType.' + (payment.transactionType ?? 'null')">
+                {{ { null: '', CREDIT: 'CREDIT', DEBIT: 'DEBIT' }[payment.transactionType ?? 'null'] }}
+              </td>
+              <td>{{ payment.transactionAmount }}</td>
+              <td [jhiTranslate]="'jhipsterApp.TransactionStatus.' + (payment.transactionStatus ?? 'null')">
+                {{ { null: '', SUCCESS: 'SUCCESS', FAILED: 'FAILED', PENDING: 'PENDING' }[payment.transactionStatus ?? 'null'] }}
+              </td>
+              <td>{{ payment.cardNumber }}</td>
+              <td>{{ payment.expiryDate }}</td>
+              <td>{{ payment.cvv }}</td>
+              <td>{{ payment.cardholderName }}</td>
+              <td>
+                @if (payment.booking) {
+                  <div>
+                    <a [routerLink]="['/booking', payment.booking.id, 'view']">{{ payment.booking.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/payment', payment.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/payment', payment.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(payment)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

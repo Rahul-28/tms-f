@@ -1,0 +1,293 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-train-heading" data-cy="TrainCreateUpdateHeading" jhiTranslate="jhipsterApp.train.home.createOrEditLabel">
+        Create or edit a Train
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="jhipsterApp.train.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let trainNumberRef = editForm.get('trainNumber')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_trainNumber" jhiTranslate="jhipsterApp.train.trainNumber">Train Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="trainNumber"
+            id="field_trainNumber"
+            data-cy="trainNumber"
+            formControlName="trainNumber"
+          />
+          @if (trainNumberRef.invalid && (trainNumberRef.dirty || trainNumberRef.touched)) {
+            <div>
+              @if (editForm.get('trainNumber')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let trainNameRef = editForm.get('trainName')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_trainName" jhiTranslate="jhipsterApp.train.trainName">Train Name</label>
+          <input type="text" class="form-control" name="trainName" id="field_trainName" data-cy="trainName" formControlName="trainName" />
+          @if (trainNameRef.invalid && (trainNameRef.dirty || trainNameRef.touched)) {
+            <div>
+              @if (editForm.get('trainName')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let originRef = editForm.get('origin')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_origin" jhiTranslate="jhipsterApp.train.origin">Origin</label>
+          <input type="text" class="form-control" name="origin" id="field_origin" data-cy="origin" formControlName="origin" />
+          @if (originRef.invalid && (originRef.dirty || originRef.touched)) {
+            <div>
+              @if (editForm.get('origin')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let destinationRef = editForm.get('destination')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_destination" jhiTranslate="jhipsterApp.train.destination">Destination</label>
+          <input
+            type="text"
+            class="form-control"
+            name="destination"
+            id="field_destination"
+            data-cy="destination"
+            formControlName="destination"
+          />
+          @if (destinationRef.invalid && (destinationRef.dirty || destinationRef.touched)) {
+            <div>
+              @if (editForm.get('destination')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let intermediateStopRef = editForm.get('intermediateStop')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_intermediateStop" jhiTranslate="jhipsterApp.train.intermediateStop">Intermediate Stop</label>
+          <input
+            type="text"
+            class="form-control"
+            name="intermediateStop"
+            id="field_intermediateStop"
+            data-cy="intermediateStop"
+            formControlName="intermediateStop"
+          />
+          @if (intermediateStopRef.invalid && (intermediateStopRef.dirty || intermediateStopRef.touched)) {
+            <div>
+              @if (editForm.get('intermediateStop')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let serviceStartDateRef = editForm.get('serviceStartDate')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_serviceStartDate" jhiTranslate="jhipsterApp.train.serviceStartDate"
+            >Service Start Date</label
+          >
+          <div class="input-group">
+            <input
+              id="field_serviceStartDate"
+              data-cy="serviceStartDate"
+              type="text"
+              class="form-control"
+              name="serviceStartDate"
+              ngbDatepicker
+              #serviceStartDateDp="ngbDatepicker"
+              formControlName="serviceStartDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="serviceStartDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+          @if (serviceStartDateRef.invalid && (serviceStartDateRef.dirty || serviceStartDateRef.touched)) {
+            <div>
+              @if (editForm.get('serviceStartDate')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let serviceEndDateRef = editForm.get('serviceEndDate')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_serviceEndDate" jhiTranslate="jhipsterApp.train.serviceEndDate">Service End Date</label>
+          <div class="input-group">
+            <input
+              id="field_serviceEndDate"
+              data-cy="serviceEndDate"
+              type="text"
+              class="form-control"
+              name="serviceEndDate"
+              ngbDatepicker
+              #serviceEndDateDp="ngbDatepicker"
+              formControlName="serviceEndDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="serviceEndDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+          @if (serviceEndDateRef.invalid && (serviceEndDateRef.dirty || serviceEndDateRef.touched)) {
+            <div>
+              @if (editForm.get('serviceEndDate')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let serviceTypeRef = editForm.get('serviceType')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_serviceType" jhiTranslate="jhipsterApp.train.serviceType">Service Type</label>
+          <select class="form-control" name="serviceType" formControlName="serviceType" id="field_serviceType" data-cy="serviceType">
+            <option [ngValue]="null">{{ 'jhipsterApp.ServiceType.null' | translate }}</option>
+            @for (serviceType of serviceTypeValues; track $index) {
+              <option [value]="serviceType">{{ 'jhipsterApp.ServiceType.' + serviceType | translate }}</option>
+            }
+          </select>
+          @if (serviceTypeRef.invalid && (serviceTypeRef.dirty || serviceTypeRef.touched)) {
+            <div>
+              @if (editForm.get('serviceType')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let departureTimeRef = editForm.get('departureTime')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_departureTime" jhiTranslate="jhipsterApp.train.departureTime">Departure Time</label>
+          <div class="d-flex">
+            <input
+              id="field_departureTime"
+              data-cy="departureTime"
+              type="datetime-local"
+              class="form-control"
+              name="departureTime"
+              formControlName="departureTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          @if (departureTimeRef.invalid && (departureTimeRef.dirty || departureTimeRef.touched)) {
+            <div>
+              @if (editForm.get('departureTime')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('departureTime')?.errors?.datetimelocal"
+                jhiTranslate="entity.validation.datetimelocal"
+                >This field should be a date and time.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let arrivalTimeRef = editForm.get('arrivalTime')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_arrivalTime" jhiTranslate="jhipsterApp.train.arrivalTime">Arrival Time</label>
+          <div class="d-flex">
+            <input
+              id="field_arrivalTime"
+              data-cy="arrivalTime"
+              type="datetime-local"
+              class="form-control"
+              name="arrivalTime"
+              formControlName="arrivalTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          @if (arrivalTimeRef.invalid && (arrivalTimeRef.dirty || arrivalTimeRef.touched)) {
+            <div>
+              @if (editForm.get('arrivalTime')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('arrivalTime')?.errors?.datetimelocal"
+                jhiTranslate="entity.validation.datetimelocal"
+                >This field should be a date and time.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let basicPriceRef = editForm.get('basicPrice')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_basicPrice" jhiTranslate="jhipsterApp.train.basicPrice">Basic Price</label>
+          <input
+            type="number"
+            class="form-control"
+            name="basicPrice"
+            id="field_basicPrice"
+            data-cy="basicPrice"
+            formControlName="basicPrice"
+          />
+          @if (basicPriceRef.invalid && (basicPriceRef.dirty || basicPriceRef.touched)) {
+            <div>
+              @if (editForm.get('basicPrice')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('basicPrice')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >This field should be a number.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let isActiveRef = editForm.get('isActive')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_isActive" jhiTranslate="jhipsterApp.train.isActive">Is Active</label>
+          <input type="checkbox" class="form-check" name="isActive" id="field_isActive" data-cy="isActive" formControlName="isActive" />
+          @if (isActiveRef.invalid && (isActiveRef.dirty || isActiveRef.touched)) {
+            <div>
+              @if (editForm.get('isActive')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (coachType(); as coachTypeRef) {
+      <div>
+        <h2 data-cy="coachTypeDetailsHeading"><span jhiTranslate="jhipsterApp.coachType.detail.title">Coach Type</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ coachTypeRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.coachType.coachId">Coach Id</span></dt>
+          <dd>
+            <span>{{ coachTypeRef.coachId }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.coachType.coachName">Coach Name</span></dt>
+          <dd>
+            <span>{{ coachTypeRef.coachName }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.coachType.seatCapacity">Seat Capacity</span></dt>
+          <dd>
+            <span>{{ coachTypeRef.seatCapacity }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.coachType.fareMultiplier">Fare Multiplier</span></dt>
+          <dd>
+            <span>{{ coachTypeRef.fareMultiplier }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/coach-type', coachTypeRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

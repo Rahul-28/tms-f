@@ -1,0 +1,80 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (train(); as trainRef) {
+      <div>
+        <h2 data-cy="trainDetailsHeading"><span jhiTranslate="jhipsterApp.train.detail.title">Train</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ trainRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.train.trainNumber">Train Number</span></dt>
+          <dd>
+            <span>{{ trainRef.trainNumber }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.train.trainName">Train Name</span></dt>
+          <dd>
+            <span>{{ trainRef.trainName }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.train.origin">Origin</span></dt>
+          <dd>
+            <span>{{ trainRef.origin }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.train.destination">Destination</span></dt>
+          <dd>
+            <span>{{ trainRef.destination }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.train.intermediateStop">Intermediate Stop</span></dt>
+          <dd>
+            <span>{{ trainRef.intermediateStop }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.train.serviceStartDate">Service Start Date</span></dt>
+          <dd>
+            <span>{{ trainRef.serviceStartDate | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.train.serviceEndDate">Service End Date</span></dt>
+          <dd>
+            <span>{{ trainRef.serviceEndDate | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.train.serviceType">Service Type</span></dt>
+          <dd>
+            <span [jhiTranslate]="'jhipsterApp.ServiceType.' + (trainRef.serviceType ?? 'null')">{{
+              { null: '', DAILY: 'DAILY', WEEKLY: 'WEEKLY' }[trainRef.serviceType ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.train.departureTime">Departure Time</span></dt>
+          <dd>
+            <span>{{ trainRef.departureTime | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.train.arrivalTime">Arrival Time</span></dt>
+          <dd>
+            <span>{{ trainRef.arrivalTime | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.train.basicPrice">Basic Price</span></dt>
+          <dd>
+            <span>{{ trainRef.basicPrice }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.train.isActive">Is Active</span></dt>
+          <dd>
+            <span>{{ trainRef.isActive }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/train', trainRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

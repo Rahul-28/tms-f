@@ -1,0 +1,274 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-payment-heading" data-cy="PaymentCreateUpdateHeading" jhiTranslate="jhipsterApp.payment.home.createOrEditLabel">
+        Create or edit a Payment
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="jhipsterApp.payment.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let paymentIdRef = editForm.get('paymentId')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_paymentId" jhiTranslate="jhipsterApp.payment.paymentId">Payment Id</label>
+          <input type="text" class="form-control" name="paymentId" id="field_paymentId" data-cy="paymentId" formControlName="paymentId" />
+          @if (paymentIdRef.invalid && (paymentIdRef.dirty || paymentIdRef.touched)) {
+            <div>
+              @if (editForm.get('paymentId')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let transactionIdRef = editForm.get('transactionId')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_transactionId" jhiTranslate="jhipsterApp.payment.transactionId">Transaction Id</label>
+          <input
+            type="text"
+            class="form-control"
+            name="transactionId"
+            id="field_transactionId"
+            data-cy="transactionId"
+            formControlName="transactionId"
+          />
+          @if (transactionIdRef.invalid && (transactionIdRef.dirty || transactionIdRef.touched)) {
+            <div>
+              @if (editForm.get('transactionId')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let receiptNumberRef = editForm.get('receiptNumber')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_receiptNumber" jhiTranslate="jhipsterApp.payment.receiptNumber">Receipt Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="receiptNumber"
+            id="field_receiptNumber"
+            data-cy="receiptNumber"
+            formControlName="receiptNumber"
+          />
+          @if (receiptNumberRef.invalid && (receiptNumberRef.dirty || receiptNumberRef.touched)) {
+            <div>
+              @if (editForm.get('receiptNumber')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let transactionDateRef = editForm.get('transactionDate')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_transactionDate" jhiTranslate="jhipsterApp.payment.transactionDate">Transaction Date</label>
+          <div class="d-flex">
+            <input
+              id="field_transactionDate"
+              data-cy="transactionDate"
+              type="datetime-local"
+              class="form-control"
+              name="transactionDate"
+              formControlName="transactionDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          @if (transactionDateRef.invalid && (transactionDateRef.dirty || transactionDateRef.touched)) {
+            <div>
+              @if (editForm.get('transactionDate')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('transactionDate')?.errors?.datetimelocal"
+                jhiTranslate="entity.validation.datetimelocal"
+                >This field should be a date and time.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let transactionTypeRef = editForm.get('transactionType')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_transactionType" jhiTranslate="jhipsterApp.payment.transactionType">Transaction Type</label>
+          <select
+            class="form-control"
+            name="transactionType"
+            formControlName="transactionType"
+            id="field_transactionType"
+            data-cy="transactionType"
+          >
+            <option [ngValue]="null">{{ 'jhipsterApp.TransactionType.null' | translate }}</option>
+            @for (transactionType of transactionTypeValues; track $index) {
+              <option [value]="transactionType">{{ 'jhipsterApp.TransactionType.' + transactionType | translate }}</option>
+            }
+          </select>
+          @if (transactionTypeRef.invalid && (transactionTypeRef.dirty || transactionTypeRef.touched)) {
+            <div>
+              @if (editForm.get('transactionType')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let transactionAmountRef = editForm.get('transactionAmount')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_transactionAmount" jhiTranslate="jhipsterApp.payment.transactionAmount"
+            >Transaction Amount</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="transactionAmount"
+            id="field_transactionAmount"
+            data-cy="transactionAmount"
+            formControlName="transactionAmount"
+          />
+          @if (transactionAmountRef.invalid && (transactionAmountRef.dirty || transactionAmountRef.touched)) {
+            <div>
+              @if (editForm.get('transactionAmount')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('transactionAmount')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >This field should be a number.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let transactionStatusRef = editForm.get('transactionStatus')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_transactionStatus" jhiTranslate="jhipsterApp.payment.transactionStatus"
+            >Transaction Status</label
+          >
+          <select
+            class="form-control"
+            name="transactionStatus"
+            formControlName="transactionStatus"
+            id="field_transactionStatus"
+            data-cy="transactionStatus"
+          >
+            <option [ngValue]="null">{{ 'jhipsterApp.TransactionStatus.null' | translate }}</option>
+            @for (transactionStatus of transactionStatusValues; track $index) {
+              <option [value]="transactionStatus">{{ 'jhipsterApp.TransactionStatus.' + transactionStatus | translate }}</option>
+            }
+          </select>
+          @if (transactionStatusRef.invalid && (transactionStatusRef.dirty || transactionStatusRef.touched)) {
+            <div>
+              @if (editForm.get('transactionStatus')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let cardNumberRef = editForm.get('cardNumber')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_cardNumber" jhiTranslate="jhipsterApp.payment.cardNumber">Card Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="cardNumber"
+            id="field_cardNumber"
+            data-cy="cardNumber"
+            formControlName="cardNumber"
+          />
+          @if (cardNumberRef.invalid && (cardNumberRef.dirty || cardNumberRef.touched)) {
+            <div>
+              @if (editForm.get('cardNumber')?.errors?.pattern) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Card Number' }"
+                  >This field should follow pattern for Card Number.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_expiryDate" jhiTranslate="jhipsterApp.payment.expiryDate">Expiry Date</label>
+          <input
+            type="text"
+            class="form-control"
+            name="expiryDate"
+            id="field_expiryDate"
+            data-cy="expiryDate"
+            formControlName="expiryDate"
+          />
+        </div>
+
+        @let cvvRef = editForm.get('cvv')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_cvv" jhiTranslate="jhipsterApp.payment.cvv">Cvv</label>
+          <input type="text" class="form-control" name="cvv" id="field_cvv" data-cy="cvv" formControlName="cvv" />
+          @if (cvvRef.invalid && (cvvRef.dirty || cvvRef.touched)) {
+            <div>
+              @if (editForm.get('cvv')?.errors?.pattern) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Cvv' }"
+                  >This field should follow pattern for Cvv.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_cardholderName" jhiTranslate="jhipsterApp.payment.cardholderName">Cardholder Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="cardholderName"
+            id="field_cardholderName"
+            data-cy="cardholderName"
+            formControlName="cardholderName"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_booking" jhiTranslate="jhipsterApp.payment.booking">Booking</label>
+          <select
+            class="form-control"
+            id="field_booking"
+            data-cy="booking"
+            name="booking"
+            formControlName="booking"
+            [compareWith]="compareBooking"
+          >
+            <option [ngValue]="null"></option>
+            @for (bookingOption of bookingsSharedCollection; track $index) {
+              <option [ngValue]="bookingOption">{{ bookingOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

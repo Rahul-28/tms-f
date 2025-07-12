@@ -1,0 +1,37 @@
+{
+  "jhipsterApp": {
+    "train": {
+      "home": {
+        "title": "Trains",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Train",
+        "createOrEditLabel": "Create or edit a Train",
+        "notFound": "No Trains found"
+      },
+      "created": "A new Train is created with identifier {{ param }}",
+      "updated": "A Train is updated with identifier {{ param }}",
+      "deleted": "A Train is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Train {{ id }}?"
+      },
+      "detail": {
+        "title": "Train"
+      },
+      "id": "ID",
+      "trainNumber": "Train Number",
+      "trainName": "Train Name",
+      "origin": "Origin",
+      "destination": "Destination",
+      "intermediateStop": "Intermediate Stop",
+      "serviceStartDate": "Service Start Date",
+      "serviceEndDate": "Service End Date",
+      "serviceType": "Service Type",
+      "departureTime": "Departure Time",
+      "arrivalTime": "Arrival Time",
+      "basicPrice": "Basic Price",
+      "isActive": "Is Active",
+      "bookings": "Bookings",
+      "trainCoaches": "Train Coaches"
+    }
+  }
+}

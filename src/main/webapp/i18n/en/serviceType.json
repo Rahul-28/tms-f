@@ -1,0 +1,9 @@
+{
+  "jhipsterApp": {
+    "ServiceType": {
+      "null": "",
+      "DAILY": "DAILY",
+      "WEEKLY": "WEEKLY"
+    }
+  }
+}

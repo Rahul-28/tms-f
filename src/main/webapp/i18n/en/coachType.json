@@ -1,0 +1,27 @@
+{
+  "jhipsterApp": {
+    "coachType": {
+      "home": {
+        "title": "Coach Types",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Coach Type",
+        "createOrEditLabel": "Create or edit a Coach Type",
+        "notFound": "No Coach Types found"
+      },
+      "created": "A new Coach Type is created with identifier {{ param }}",
+      "updated": "A Coach Type is updated with identifier {{ param }}",
+      "deleted": "A Coach Type is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Coach Type {{ id }}?"
+      },
+      "detail": {
+        "title": "Coach Type"
+      },
+      "id": "ID",
+      "coachId": "Coach Id",
+      "coachName": "Coach Name",
+      "seatCapacity": "Seat Capacity",
+      "fareMultiplier": "Fare Multiplier"
+    }
+  }
+}

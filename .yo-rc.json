@@ -1,0 +1,22 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "authenticationType": "jwt",
+    "baseName": "jhipster",
+    "buildTool": "maven",
+    "cacheProvider": "ehcache",
+    "clientFramework": "angular",
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "enableSwaggerCodegen": true,
+    "entities": ["Customer", "Admin", "Train", "CoachType", "TrainCoach", "Booking", "Passenger", "Payment", "Invoice"],
+    "jhipsterVersion": "8.11.0",
+    "jwtSecretKey": "NTlmZmViYzIzMGRmMzA5ZDZjOGI2OTA0MGU4MzY4OWNmMDhiN2I2ZmExNDE3Mjg1ODkyNTdhYzdmZTA1Y2Q5ZTg0M2E1MjRlNDczNjE3YzlmM2Y1NTVmNTZjNzk2MzVjMzBlNzM0ZjhjNGQzYzlkZGNmOTNhMzkwZjYwZGIyZmM=",
+    "languages": ["en"],
+    "lastLiquibaseTimestamp": 1752301382000,
+    "nativeLanguage": "en",
+    "packageName": "com.trainmanagement",
+    "prodDatabaseType": "mysql",
+    "testFrameworks": ["cypress"]
+  }
+}

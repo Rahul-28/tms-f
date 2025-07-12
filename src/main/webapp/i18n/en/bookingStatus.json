@@ -1,0 +1,11 @@
+{
+  "jhipsterApp": {
+    "BookingStatus": {
+      "null": "",
+      "CONFIRMED": "CONFIRMED",
+      "CANCELLED": "CANCELLED",
+      "PENDING": "PENDING",
+      "COMPLETED": "COMPLETED"
+    }
+  }
+}

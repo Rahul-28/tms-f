@@ -1,0 +1,149 @@
+application {
+  config {
+    applicationType monolith
+    packageName com.trainmanagement
+    authenticationType jwt
+    databaseType sql
+    devDatabaseType h2Disk
+    prodDatabaseType mysql
+    cacheProvider ehcache
+    buildTool maven
+    clientFramework angularX
+    testFrameworks [cypress]
+    languages [en]
+    nativeLanguage en
+    enableSwaggerCodegen true
+  }
+  entities *
+}
+
+// Enums - Define before entities that use them
+enum ServiceType {
+    DAILY, WEEKLY
+}
+enum BookingStatus {
+    CONFIRMED, CANCELLED, PENDING, COMPLETED
+}
+enum PaymentMode {
+    CREDIT_CARD, DEBIT_CARD
+}
+enum TransactionType {
+    CREDIT, DEBIT
+}
+enum TransactionStatus {
+    SUCCESS, FAILED, PENDING
+}
+// User Management Entities
+entity Customer {
+    customerId String required unique
+  username String required minlength(3) pattern(/^[a-zA-Z]+$/)
+  password String required minlength(8)
+  email String required pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
+  mobileNumber String required pattern(/^[0-9]{10}$/)
+  aadhaarNumber String required pattern(/^[0-9]{12}$/)
+  address String
+  contactInformation String
+  registrationDate Instant
+  isActive Boolean required
+}
+entity Admin {
+    adminId String required unique
+  username String required
+  password String required
+  email String required
+  isActive Boolean required
+}
+// Train Management Entities
+entity Train {
+    trainNumber String required unique
+  trainName String required unique
+  origin String required
+  destination String required
+  intermediateStop String required
+  serviceStartDate LocalDate required
+  serviceEndDate LocalDate required
+  serviceType ServiceType required
+  departureTime Instant required
+  arrivalTime Instant required
+  basicPrice BigDecimal required
+  isActive Boolean required
+}
+entity CoachType {
+    coachId String required unique
+  coachName String required
+  seatCapacity Integer required
+  fareMultiplier BigDecimal required
+}
+entity TrainCoach {
+    trainNumber String required
+  seatCapacity Integer required
+  availableSeats Integer required
+  farePrice BigDecimal required
+}
+// Booking Management Entities
+entity Booking {
+    pnrNumber String required unique
+  bookingDate Instant required
+  travellingDate LocalDate required
+  boardingStation String required
+  destinationStation String required
+  boardingTime Instant required
+  arrivalTime Instant required
+  totalFare BigDecimal required
+  bookingStatus BookingStatus required
+  modeOfPayment PaymentMode required
+  additionalServices Boolean required
+  coachNumber String required
+  seatNumber String required
+}
+entity Passenger {
+    passengerName String required
+  age Integer required min(1) max(120)
+  coachNumber String required
+  seatNumber String required
+}
+// Payment Management Entities
+entity Payment {
+    paymentId String required unique
+  transactionId String required unique
+  receiptNumber String required unique
+  transactionDate Instant required
+  transactionType TransactionType required
+  transactionAmount BigDecimal required
+  transactionStatus TransactionStatus required
+  cardNumber String pattern(/^[0-9]{16}$/)
+  expiryDate String
+  cvv String pattern(/^[0-9]{3}$/)
+  cardholderName String
+}
+entity Invoice {
+    invoiceNumber String required unique
+  paymentId String required
+  transactionId String required
+  receiptNumber String required
+  invoiceDate Instant required
+  transactionType TransactionType required
+  transactionAmount BigDecimal required
+  transactionStatus TransactionStatus required
+  customerDetails String required
+}
+// Relationships
+relationship OneToMany {
+    Customer{bookings} to Booking{customer}
+  Train{bookings} to Booking{train}
+  Train{trainCoaches} to TrainCoach{train}
+  Booking{passengers} to Passenger{booking}
+  Booking{payment} to Payment{booking}
+  Payment{invoice} to Invoice{payment}
+}
+relationship ManyToOne {
+    TrainCoach{coachType} to CoachType
+}
+// Service Layer
+service all with serviceImpl
+// Pagination
+paginate Train, Booking, Customer with pagination
+// DTO
+dto all with mapstruct
+// Filtering
+filter Train, Booking, Customer, Payment

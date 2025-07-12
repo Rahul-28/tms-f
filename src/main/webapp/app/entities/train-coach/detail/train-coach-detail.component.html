@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (trainCoach(); as trainCoachRef) {
+      <div>
+        <h2 data-cy="trainCoachDetailsHeading"><span jhiTranslate="jhipsterApp.trainCoach.detail.title">Train Coach</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ trainCoachRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.trainCoach.trainNumber">Train Number</span></dt>
+          <dd>
+            <span>{{ trainCoachRef.trainNumber }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.trainCoach.seatCapacity">Seat Capacity</span></dt>
+          <dd>
+            <span>{{ trainCoachRef.seatCapacity }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.trainCoach.availableSeats">Available Seats</span></dt>
+          <dd>
+            <span>{{ trainCoachRef.availableSeats }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.trainCoach.farePrice">Fare Price</span></dt>
+          <dd>
+            <span>{{ trainCoachRef.farePrice }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.trainCoach.coachType">Coach Type</span></dt>
+          <dd>
+            @if (trainCoach()!.coachType) {
+              <div>
+                <a [routerLink]="['/coach-type', trainCoach()!.coachType?.id, 'view']">{{ trainCoachRef.coachType?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="jhipsterApp.trainCoach.train">Train</span></dt>
+          <dd>
+            @if (trainCoach()!.train) {
+              <div>
+                <a [routerLink]="['/train', trainCoach()!.train?.id, 'view']">{{ trainCoachRef.train?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/train-coach', trainCoachRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

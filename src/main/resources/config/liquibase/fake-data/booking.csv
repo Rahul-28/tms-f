@@ -1,0 +1,11 @@
+id;pnr_number;booking_date;travelling_date;boarding_station;destination_station;boarding_time;arrival_time;total_fare;booking_status;mode_of_payment;additional_services;coach_number;seat_number
+1;formal;2025-07-11T13:05:06;2025-07-11;busy alongside abaft;hm demobilise jiggle;2025-07-11T11:12:01;2025-07-11T08:39:48;2122.08;COMPLETED;DEBIT_CARD;true;barring chapel;as
+2;loosely;2025-07-12T02:02:24;2025-07-11;ew jeopardise woot;midst calmly upright;2025-07-11T22:25:14;2025-07-11T07:30:00;1299.89;PENDING;DEBIT_CARD;true;below;worth warmly
+3;brr fooey whether;2025-07-11T09:43:39;2025-07-11;er;unbearably colonialism;2025-07-11T07:37:25;2025-07-11T15:59:38;12414.65;COMPLETED;DEBIT_CARD;false;amongst emboss;bulky per emerge
+4;frozen;2025-07-11T12:25:23;2025-07-11;avow duh observe;whose scrap;2025-07-11T10:43:34;2025-07-11T15:08:45;11560.33;CANCELLED;CREDIT_CARD;false;in;incline progress
+5;briskly separate excluding;2025-07-12T00:19:28;2025-07-12;scratchy sophisticated personal;so willing eventually;2025-07-11T20:02:26;2025-07-11T14:12:35;15504.77;COMPLETED;DEBIT_CARD;false;what ragged reasoning;hubris extent
+6;testify;2025-07-11T17:12:25;2025-07-12;athwart viciously;pixellate;2025-07-11T23:34:18;2025-07-12T03:29:14;20888.17;CONFIRMED;CREDIT_CARD;true;furiously;versus spook
+7;spotless mmm dramatic;2025-07-11T09:36:08;2025-07-11;yippee carboxyl;stock instead;2025-07-11T14:45:44;2025-07-12T03:59:56;28513.07;CONFIRMED;DEBIT_CARD;true;common warmly;synthesise than
+8;heavily tool;2025-07-11T17:05:22;2025-07-12;ew afore;oh defrag;2025-07-11T15:47:27;2025-07-11T15:48:12;24156.35;COMPLETED;DEBIT_CARD;false;unless;marvelous
+9;jump wherever except;2025-07-12T00:01:56;2025-07-12;judgementally;nippy;2025-07-11T23:58:47;2025-07-11T19:09:18;8038.07;COMPLETED;CREDIT_CARD;false;obtrude supposing via;puzzled beneath
+10;until;2025-07-11T20:40:54;2025-07-12;upon deduce ouch;eek friendly sharply;2025-07-11T21:39:13;2025-07-11T06:44:26;8677.54;CANCELLED;DEBIT_CARD;false;inject why under;chap however highly

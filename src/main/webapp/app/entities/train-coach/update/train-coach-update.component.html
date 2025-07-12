@@ -1,0 +1,154 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-train-coach-heading" data-cy="TrainCoachCreateUpdateHeading" jhiTranslate="jhipsterApp.trainCoach.home.createOrEditLabel">
+        Create or edit a Train Coach
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="jhipsterApp.trainCoach.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let trainNumberRef = editForm.get('trainNumber')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_trainNumber" jhiTranslate="jhipsterApp.trainCoach.trainNumber">Train Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="trainNumber"
+            id="field_trainNumber"
+            data-cy="trainNumber"
+            formControlName="trainNumber"
+          />
+          @if (trainNumberRef.invalid && (trainNumberRef.dirty || trainNumberRef.touched)) {
+            <div>
+              @if (editForm.get('trainNumber')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let seatCapacityRef = editForm.get('seatCapacity')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_seatCapacity" jhiTranslate="jhipsterApp.trainCoach.seatCapacity">Seat Capacity</label>
+          <input
+            type="number"
+            class="form-control"
+            name="seatCapacity"
+            id="field_seatCapacity"
+            data-cy="seatCapacity"
+            formControlName="seatCapacity"
+          />
+          @if (seatCapacityRef.invalid && (seatCapacityRef.dirty || seatCapacityRef.touched)) {
+            <div>
+              @if (editForm.get('seatCapacity')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('seatCapacity')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >This field should be a number.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let availableSeatsRef = editForm.get('availableSeats')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_availableSeats" jhiTranslate="jhipsterApp.trainCoach.availableSeats">Available Seats</label>
+          <input
+            type="number"
+            class="form-control"
+            name="availableSeats"
+            id="field_availableSeats"
+            data-cy="availableSeats"
+            formControlName="availableSeats"
+          />
+          @if (availableSeatsRef.invalid && (availableSeatsRef.dirty || availableSeatsRef.touched)) {
+            <div>
+              @if (editForm.get('availableSeats')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('availableSeats')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >This field should be a number.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let farePriceRef = editForm.get('farePrice')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_farePrice" jhiTranslate="jhipsterApp.trainCoach.farePrice">Fare Price</label>
+          <input type="number" class="form-control" name="farePrice" id="field_farePrice" data-cy="farePrice" formControlName="farePrice" />
+          @if (farePriceRef.invalid && (farePriceRef.dirty || farePriceRef.touched)) {
+            <div>
+              @if (editForm.get('farePrice')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('farePrice')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >This field should be a number.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_coachType" jhiTranslate="jhipsterApp.trainCoach.coachType">Coach Type</label>
+          <select
+            class="form-control"
+            id="field_coachType"
+            data-cy="coachType"
+            name="coachType"
+            formControlName="coachType"
+            [compareWith]="compareCoachType"
+          >
+            <option [ngValue]="null"></option>
+            @for (coachTypeOption of coachTypesSharedCollection; track $index) {
+              <option [ngValue]="coachTypeOption">{{ coachTypeOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_train" jhiTranslate="jhipsterApp.trainCoach.train">Train</label>
+          <select class="form-control" id="field_train" data-cy="train" name="train" formControlName="train" [compareWith]="compareTrain">
+            <option [ngValue]="null"></option>
+            @for (trainOption of trainsSharedCollection; track $index) {
+              <option [ngValue]="trainOption">{{ trainOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

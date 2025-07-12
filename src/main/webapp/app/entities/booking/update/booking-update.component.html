@@ -1,0 +1,361 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-booking-heading" data-cy="BookingCreateUpdateHeading" jhiTranslate="jhipsterApp.booking.home.createOrEditLabel">
+        Create or edit a Booking
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="jhipsterApp.booking.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let pnrNumberRef = editForm.get('pnrNumber')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_pnrNumber" jhiTranslate="jhipsterApp.booking.pnrNumber">Pnr Number</label>
+          <input type="text" class="form-control" name="pnrNumber" id="field_pnrNumber" data-cy="pnrNumber" formControlName="pnrNumber" />
+          @if (pnrNumberRef.invalid && (pnrNumberRef.dirty || pnrNumberRef.touched)) {
+            <div>
+              @if (editForm.get('pnrNumber')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let bookingDateRef = editForm.get('bookingDate')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_bookingDate" jhiTranslate="jhipsterApp.booking.bookingDate">Booking Date</label>
+          <div class="d-flex">
+            <input
+              id="field_bookingDate"
+              data-cy="bookingDate"
+              type="datetime-local"
+              class="form-control"
+              name="bookingDate"
+              formControlName="bookingDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          @if (bookingDateRef.invalid && (bookingDateRef.dirty || bookingDateRef.touched)) {
+            <div>
+              @if (editForm.get('bookingDate')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('bookingDate')?.errors?.datetimelocal"
+                jhiTranslate="entity.validation.datetimelocal"
+                >This field should be a date and time.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let travellingDateRef = editForm.get('travellingDate')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_travellingDate" jhiTranslate="jhipsterApp.booking.travellingDate">Travelling Date</label>
+          <div class="input-group">
+            <input
+              id="field_travellingDate"
+              data-cy="travellingDate"
+              type="text"
+              class="form-control"
+              name="travellingDate"
+              ngbDatepicker
+              #travellingDateDp="ngbDatepicker"
+              formControlName="travellingDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="travellingDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+          @if (travellingDateRef.invalid && (travellingDateRef.dirty || travellingDateRef.touched)) {
+            <div>
+              @if (editForm.get('travellingDate')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let boardingStationRef = editForm.get('boardingStation')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_boardingStation" jhiTranslate="jhipsterApp.booking.boardingStation">Boarding Station</label>
+          <input
+            type="text"
+            class="form-control"
+            name="boardingStation"
+            id="field_boardingStation"
+            data-cy="boardingStation"
+            formControlName="boardingStation"
+          />
+          @if (boardingStationRef.invalid && (boardingStationRef.dirty || boardingStationRef.touched)) {
+            <div>
+              @if (editForm.get('boardingStation')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let destinationStationRef = editForm.get('destinationStation')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_destinationStation" jhiTranslate="jhipsterApp.booking.destinationStation"
+            >Destination Station</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="destinationStation"
+            id="field_destinationStation"
+            data-cy="destinationStation"
+            formControlName="destinationStation"
+          />
+          @if (destinationStationRef.invalid && (destinationStationRef.dirty || destinationStationRef.touched)) {
+            <div>
+              @if (editForm.get('destinationStation')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let boardingTimeRef = editForm.get('boardingTime')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_boardingTime" jhiTranslate="jhipsterApp.booking.boardingTime">Boarding Time</label>
+          <div class="d-flex">
+            <input
+              id="field_boardingTime"
+              data-cy="boardingTime"
+              type="datetime-local"
+              class="form-control"
+              name="boardingTime"
+              formControlName="boardingTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          @if (boardingTimeRef.invalid && (boardingTimeRef.dirty || boardingTimeRef.touched)) {
+            <div>
+              @if (editForm.get('boardingTime')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('boardingTime')?.errors?.datetimelocal"
+                jhiTranslate="entity.validation.datetimelocal"
+                >This field should be a date and time.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let arrivalTimeRef = editForm.get('arrivalTime')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_arrivalTime" jhiTranslate="jhipsterApp.booking.arrivalTime">Arrival Time</label>
+          <div class="d-flex">
+            <input
+              id="field_arrivalTime"
+              data-cy="arrivalTime"
+              type="datetime-local"
+              class="form-control"
+              name="arrivalTime"
+              formControlName="arrivalTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          @if (arrivalTimeRef.invalid && (arrivalTimeRef.dirty || arrivalTimeRef.touched)) {
+            <div>
+              @if (editForm.get('arrivalTime')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('arrivalTime')?.errors?.datetimelocal"
+                jhiTranslate="entity.validation.datetimelocal"
+                >This field should be a date and time.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let totalFareRef = editForm.get('totalFare')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_totalFare" jhiTranslate="jhipsterApp.booking.totalFare">Total Fare</label>
+          <input type="number" class="form-control" name="totalFare" id="field_totalFare" data-cy="totalFare" formControlName="totalFare" />
+          @if (totalFareRef.invalid && (totalFareRef.dirty || totalFareRef.touched)) {
+            <div>
+              @if (editForm.get('totalFare')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('totalFare')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >This field should be a number.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let bookingStatusRef = editForm.get('bookingStatus')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_bookingStatus" jhiTranslate="jhipsterApp.booking.bookingStatus">Booking Status</label>
+          <select
+            class="form-control"
+            name="bookingStatus"
+            formControlName="bookingStatus"
+            id="field_bookingStatus"
+            data-cy="bookingStatus"
+          >
+            <option [ngValue]="null">{{ 'jhipsterApp.BookingStatus.null' | translate }}</option>
+            @for (bookingStatus of bookingStatusValues; track $index) {
+              <option [value]="bookingStatus">{{ 'jhipsterApp.BookingStatus.' + bookingStatus | translate }}</option>
+            }
+          </select>
+          @if (bookingStatusRef.invalid && (bookingStatusRef.dirty || bookingStatusRef.touched)) {
+            <div>
+              @if (editForm.get('bookingStatus')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let modeOfPaymentRef = editForm.get('modeOfPayment')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_modeOfPayment" jhiTranslate="jhipsterApp.booking.modeOfPayment">Mode Of Payment</label>
+          <select
+            class="form-control"
+            name="modeOfPayment"
+            formControlName="modeOfPayment"
+            id="field_modeOfPayment"
+            data-cy="modeOfPayment"
+          >
+            <option [ngValue]="null">{{ 'jhipsterApp.PaymentMode.null' | translate }}</option>
+            @for (paymentMode of paymentModeValues; track $index) {
+              <option [value]="paymentMode">{{ 'jhipsterApp.PaymentMode.' + paymentMode | translate }}</option>
+            }
+          </select>
+          @if (modeOfPaymentRef.invalid && (modeOfPaymentRef.dirty || modeOfPaymentRef.touched)) {
+            <div>
+              @if (editForm.get('modeOfPayment')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let additionalServicesRef = editForm.get('additionalServices')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_additionalServices" jhiTranslate="jhipsterApp.booking.additionalServices"
+            >Additional Services</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="additionalServices"
+            id="field_additionalServices"
+            data-cy="additionalServices"
+            formControlName="additionalServices"
+          />
+          @if (additionalServicesRef.invalid && (additionalServicesRef.dirty || additionalServicesRef.touched)) {
+            <div>
+              @if (editForm.get('additionalServices')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let coachNumberRef = editForm.get('coachNumber')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_coachNumber" jhiTranslate="jhipsterApp.booking.coachNumber">Coach Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="coachNumber"
+            id="field_coachNumber"
+            data-cy="coachNumber"
+            formControlName="coachNumber"
+          />
+          @if (coachNumberRef.invalid && (coachNumberRef.dirty || coachNumberRef.touched)) {
+            <div>
+              @if (editForm.get('coachNumber')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let seatNumberRef = editForm.get('seatNumber')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_seatNumber" jhiTranslate="jhipsterApp.booking.seatNumber">Seat Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="seatNumber"
+            id="field_seatNumber"
+            data-cy="seatNumber"
+            formControlName="seatNumber"
+          />
+          @if (seatNumberRef.invalid && (seatNumberRef.dirty || seatNumberRef.touched)) {
+            <div>
+              @if (editForm.get('seatNumber')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_customer" jhiTranslate="jhipsterApp.booking.customer">Customer</label>
+          <select
+            class="form-control"
+            id="field_customer"
+            data-cy="customer"
+            name="customer"
+            formControlName="customer"
+            [compareWith]="compareCustomer"
+          >
+            <option [ngValue]="null"></option>
+            @for (customerOption of customersSharedCollection; track $index) {
+              <option [ngValue]="customerOption">{{ customerOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_train" jhiTranslate="jhipsterApp.booking.train">Train</label>
+          <select class="form-control" id="field_train" data-cy="train" name="train" formControlName="train" [compareWith]="compareTrain">
+            <option [ngValue]="null"></option>
+            @for (trainOption of trainsSharedCollection; track $index) {
+              <option [ngValue]="trainOption">{{ trainOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
